@@ -63,10 +63,8 @@ class ProductController extends Controller
             'price' => 'required',
             'description' => 'required',
         ]);
-
-        $product = Product::find($id);
-        $product->update($request->all());
-        return response()->json($product);
+        Product::where('id', $id)->update($request->all());
+        return response()->json('successfully updated');
     }
 
     /**
@@ -79,6 +77,6 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return response()->json(null, 204);
+        return response()->json('Product deleted successfully');
     }
 }
